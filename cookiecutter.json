@@ -18,5 +18,6 @@
     "use_celery": "n",
     "use_mailpit": "n",
     "use_whitenoise": "n",
-    "debug": "n"
+    "debug": "n",
+    "domain_name": "example.com"
   }
