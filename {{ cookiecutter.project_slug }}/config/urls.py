@@ -17,8 +17,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
-    path("users/", include("{{ cookiecutter.project_slug }}.users.urls", namespace="users")),
     # Your stuff: custom urls includes go here
     # ...
     # Media files
