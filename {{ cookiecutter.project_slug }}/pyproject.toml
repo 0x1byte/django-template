@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "yavaranmahdi"
+version = "0.1.0"
+description = ""
+authors = ["0x1byte"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^5.0.3"
+gunicorn = "^21.2.0"
+dj-database-url = "^2.1.0"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "config.settings.common"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
