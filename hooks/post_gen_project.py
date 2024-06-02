@@ -37,7 +37,7 @@ def remove_async_files():
 
 def remove_drf_starter_files():
     os.remove(os.path.join("config", "api_router.py"))
-    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
+    # shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
 
 
 def generate_random_string(
