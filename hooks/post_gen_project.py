@@ -35,6 +35,11 @@ def remove_async_files():
         os.remove(file_name)
 
 
+def remove_drf_starter_files():
+    os.remove(os.path.join("config", "api_router.py"))
+    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
+
+
 def generate_random_string(
     length, using_digits=False, using_ascii_letters=False, using_punctuation=False
 ):
@@ -105,11 +110,6 @@ def set_django_admin_url(file_path):
 
 def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "dev.py"))
-
-
-def remove_drf_starter_files():
-    os.remove(os.path.join("config", "api_router.py"))
-    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
 
 
 def generate_random_user():
