@@ -16,7 +16,6 @@
     "use_async": "n",
     "use_drf": "n",
     "use_celery": "n",
-    "use_mailpit": "n",
     "use_whitenoise": "n",
     "debug": "n",
     "domain_name": "example.com"
