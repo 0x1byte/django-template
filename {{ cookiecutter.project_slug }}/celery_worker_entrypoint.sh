@@ -1,7 +1,7 @@
 #!/bin/sh
 
-set -o errexit
-set -o pipefail
-set -o nounset
+echo "--> Waiting for db to be ready"
+./wait-for-it.sh db:5432
 
-exec celery -A config.celery_app worker -l INFO
+echo "--> Starting worker process"
+celery -A config.celery_app worker -l INFO

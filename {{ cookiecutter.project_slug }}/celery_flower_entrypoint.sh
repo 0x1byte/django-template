@@ -1,10 +1,7 @@
 #!/bin/bash
 
-set -o errexit
-set -o nounset
+echo "--> Waiting for db to be ready"
+./wait-for-it.sh db:5432
 
-exec celery \
-    -A config.celery_app \
-    -b "${CELERY_BROKER_URL}" \
-    flower \
-    --basic_auth="${CELERY_FLOWER_USER}:${CELERY_FLOWER_PASSWORD}"
+echo "--> Starting flower process"
+celery -A config.celery_app -b "${CELERY_BROKER_URL}" flower --basic_auth=${CELERY_FLOWER_USER}:${CELERY_FLOWER_PASSWORD}
