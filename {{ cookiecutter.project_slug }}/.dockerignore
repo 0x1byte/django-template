@@ -1,6 +1,5 @@
 README.md
 .gitignore
-.env.sample
 .github
 .gitignore
 .pre-commit-config.yaml

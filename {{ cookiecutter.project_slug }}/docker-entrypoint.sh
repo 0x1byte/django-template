@@ -1,5 +1,10 @@
 #!/bin/bash
 
+{% if cookiecutter.use_celery == 'y' %}
+export CELERY_BROKER_URL="${REDIS_URL}"
+{% endif %}
+
+
 echo "Applying migrations..."
 poetry run python manage.py migrate
 

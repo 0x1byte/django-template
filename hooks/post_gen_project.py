@@ -158,16 +158,16 @@ def set_celery_flower_password(file_path, value=None):
 
 def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
 
-    set_django_secret_key(".env.sample")
-    set_django_admin_url(".env.sample")
-    set_postgres_user(".env.sample", value=postgres_user)
-    set_postgres_password(".env.sample", value=DEBUG_VALUE if debug else None)
-    set_postgres_user(".env.sample", value=postgres_user)
-    set_postgres_password(".env.sample", value=DEBUG_VALUE if debug else None)
-    set_celery_flower_user(".env.sample", value=celery_flower_user)
-    set_celery_flower_password(".env.sample", value=DEBUG_VALUE if debug else None)
-    set_celery_flower_user(".env.sample", value=celery_flower_user)
-    set_celery_flower_password(".env.sample", value=DEBUG_VALUE if debug else None)
+    set_django_secret_key(".env")
+    set_django_admin_url(".env")
+    set_postgres_user(".env", value=postgres_user)
+    set_postgres_password(".env", value=DEBUG_VALUE if debug else None)
+    set_postgres_user(".env", value=postgres_user)
+    set_postgres_password(".env", value=DEBUG_VALUE if debug else None)
+    set_celery_flower_user(".env", value=celery_flower_user)
+    set_celery_flower_password(".env", value=DEBUG_VALUE if debug else None)
+    set_celery_flower_user(".env", value=celery_flower_user)
+    set_celery_flower_password(".env", value=DEBUG_VALUE if debug else None)
 
 
 def main():

@@ -32,10 +32,53 @@ services:
       - /root/cert/:/etc/nginx/cert
     depends_on:
       - web
+  redis:
+    image: redis:latest
+    {% if cookiecutter.use_celery == 'y' %}
+    volumes:
+      - redis_data:/data
+    {% endif %}
+
+  {%- if cookiecutter.use_celery == 'y' %}
+
+  celeryworker:
+    build: .
+    container_name: {{ cookiecutter.project_slug }}_celeryworker
+    command: ./celery_worker_entrypoint.sh
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    restart: on-failure
+
+
+  celerybeat:
+    build: .
+    container_name: {{ cookiecutter.project_slug }}_celerybeat
+    command: ./celery_beat_entrypoint.sh
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    restart: on-failure
+
+  flower:
+    build: .
+    container_name: {{ cookiecutter.project_slug }}_celeryflower
+    command: ./celery_flower_entrypoint.sh
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    restart: on-failure
+  {%- endif %}
 
 
 volumes:
   postgresdata:
   media:
   static:
+  {% if cookiecutter.use_celery == 'y' %}
+  redis_data: {}
+  {% endif %}
   
