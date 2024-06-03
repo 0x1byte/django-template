@@ -50,6 +50,8 @@ services:
     build: .
     container_name: {{ cookiecutter.project_slug }}_celeryworker
     command: ./celery_worker_entrypoint.sh
+    env_file:
+      - .env
     volumes:
       - .:/app
     depends_on:
@@ -59,6 +61,8 @@ services:
     build: .
     container_name: {{ cookiecutter.project_slug }}_celerybeat
     command: ./celery_beat_entrypoint.sh
+    env_file:
+      - .env
     volumes:
       - .:/app
     depends_on:
@@ -69,6 +73,8 @@ services:
     build: .
     container_name: {{ cookiecutter.project_slug }}_celeryflower
     command: ./celery_flower_entrypoint.sh
+    env_file:
+      - .env
     volumes:
       - .:/app
     depends_on:
