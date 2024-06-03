@@ -10,14 +10,8 @@ RUN apt-get update \
 RUN pip install --upgrade pip  
 RUN pip install poetry
 
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml /app/
 
 RUN poetry install
 
 COPY . /app/
-
-EXPOSE 8000  
-
-RUN chmod +x docker-entrypoint.sh
-
-ENTRYPOINT ["sh","/app/docker-entrypoint.sh"]

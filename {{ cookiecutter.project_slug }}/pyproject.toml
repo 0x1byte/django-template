@@ -27,6 +27,7 @@ django-environ = "^0.11.2"
 {%- if cookiecutter.use_async == 'y' %}
 uvicorn = {extras = ["standard"], version = "^0.30.1"}
 {%- endif %}
+psycopg2 = "^2.9.9"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^4.4.2"

@@ -1,8 +1,25 @@
 version: '3.9'
 services:
+  postgres:
+    image: postgres
+    container_name: {{ cookiecutter.project_slug }}_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    {% if cookiecutter.use_celery == 'y' %}
+    volumes:
+      - redis_data:/data
+    {% endif %}
   web:
     build: .
-    command: ./wait-for-it.sh mysql:5432 -- ./docker-entrypoint.sh
+    container_name: {{ cookiecutter.project_slug }}_web
+    command: ./web_entrypoint.sh
     ports:
       - 8000:8000
     restart: on-failure
@@ -12,15 +29,9 @@ services:
       - .:/app
       - ./media:/app/media
       - ./static:/app/static
-  postgres:
-    image: postgres
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - 5432:5432
-    volumes:
-      - postgresdata:/var/lib/postgresql/data
+    depends_on:
+      - {{ cookiecutter.project_slug }}_db
+      - redis
   nginx:
     build: ./nginx
     ports:
@@ -31,13 +42,7 @@ services:
       - ./static:/app/static
       - /root/cert/:/etc/nginx/cert
     depends_on:
-      - web
-  redis:
-    image: redis:latest
-    {% if cookiecutter.use_celery == 'y' %}
-    volumes:
-      - redis_data:/data
-    {% endif %}
+      - {{ cookiecutter.project_slug }}_web
 
   {%- if cookiecutter.use_celery == 'y' %}
 
@@ -50,8 +55,6 @@ services:
     depends_on:
       - redis
     restart: on-failure
-
-
   celerybeat:
     build: .
     container_name: {{ cookiecutter.project_slug }}_celerybeat
