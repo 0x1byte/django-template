@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  db:
+  postgres:
     image: postgres
     container_name: {{ cookiecutter.project_slug }}_db
     restart: always
@@ -30,7 +30,7 @@ services:
       - ./media:/app/media
       - ./static:/app/static
     depends_on:
-      - db
+      - postgres
       - redis
   nginx:
     build: ./nginx
