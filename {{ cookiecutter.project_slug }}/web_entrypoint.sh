@@ -6,7 +6,7 @@ export CELERY_BROKER_URL="${REDIS_URL}"
 
 
 echo "--> Waiting for db to be ready"
-./wait-for-it.sh db:5432
+./wait-for-it.sh postgres:5432
 
 # Apply database migrations
 echo "Apply database migrations"
