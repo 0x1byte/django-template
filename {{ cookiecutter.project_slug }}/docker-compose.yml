@@ -28,7 +28,7 @@ services:
     volumes:
       - .:/app
       - ./media:/app/media
-      - ./static:/app/static
+      - ./staticfiles:/app/staticfiles
     depends_on:
       - postgres
       - redis
@@ -39,7 +39,7 @@ services:
       - 1337:443
     volumes:
       - ./media:/app/media
-      - ./static:/app/static
+      - ./staticfiles:/app/staticfiles
       - /root/cert/:/etc/nginx/cert
     depends_on:
       - web
