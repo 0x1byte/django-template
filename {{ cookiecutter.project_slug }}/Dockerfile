@@ -15,5 +15,6 @@ COPY pyproject.toml /app/
 RUN poetry install
 
 COPY . /app/
-
+{% if cookiecutter.use_celery == 'y' %}
 RUN chmod +x web_entrypoint.sh celery_flower_entrypoint.sh celery_worker_entrypoint.sh wait-for-it.sh celery_beat_entrypoint.sh
+{% endif %}

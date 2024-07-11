@@ -10,12 +10,12 @@ services:
       - 5432:5432
     volumes:
       - postgresdata:/var/lib/postgresql/data
+  {% if cookiecutter.use_celery == 'y' or cookiecutter.use_cache == 'y' %}
   redis:
     image: redis:latest
-    {% if cookiecutter.use_celery == 'y' %}
     volumes:
       - redis_data:/data
-    {% endif %}
+  {% endif %}
   web:
     build: .
     container_name: {{ cookiecutter.project_slug }}_web

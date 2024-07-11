@@ -137,12 +137,13 @@ SPECTACULAR_SETTINGS["SERVERS"] = [
 
 {%- endif %}
 
-
+{%- if cookiecutter.use_whitenoise == 'y' %}
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+{%- endif %}

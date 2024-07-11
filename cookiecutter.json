@@ -17,6 +17,7 @@
     "use_drf": "n",
     "use_celery": "n",
     "use_whitenoise": "n",
+    "use_cache": "n",
     "debug": "n",
     "domain_name": "example.com"
   }

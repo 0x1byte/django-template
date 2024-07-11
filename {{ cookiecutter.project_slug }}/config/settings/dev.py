@@ -23,6 +23,7 @@ DATABASES = {
     }
 }
 
+{% if cookiecutter.use_cache == 'y' -%}
 # CACHES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
@@ -32,6 +33,7 @@ CACHES = {
         "LOCATION": "",
     },
 }
+{%- endif %}
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -75,7 +77,3 @@ CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
 
 {%- endif %}
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]

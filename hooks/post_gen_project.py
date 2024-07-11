@@ -24,6 +24,9 @@ def remove_celery_files():
     ]
     for file_name in file_names:
         os.remove(file_name)
+    os.remove("celery_beat_entrypoint.sh")
+    os.remove("celery_flower_entrypoint.sh")
+    os.remove("celery_worker_entrypoint.sh")
 
 
 def remove_async_files():
@@ -37,7 +40,7 @@ def remove_async_files():
 
 def remove_drf_starter_files():
     os.remove(os.path.join("config", "api_router.py"))
-    # shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
+    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"), True)
 
 
 def generate_random_string(
